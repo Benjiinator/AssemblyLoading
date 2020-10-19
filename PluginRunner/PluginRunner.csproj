@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="3.1.6" />
+    <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PluginContract\PluginContract.csproj" />
+    <ProjectReference Include="..\PluginRunnerContract\PluginRunnerContract.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="Copy /y &quot;$(TargetDir)*.dll&quot; &quot;C:\AssemblyLoading\&quot;&#xD;&#xA;Copy /y &quot;$(TargetDir)*deps.json&quot; &quot;C:\AssemblyLoading\&quot;" />
+  </Target>
+
+</Project>

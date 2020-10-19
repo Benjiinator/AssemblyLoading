@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PluginContract\PluginContract.csproj" />
+    <ProjectReference Include="..\PluginShared\PluginShared.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="Copy /y &quot;$(TargetDir)*.dll&quot; &quot;C:\AssemblyLoading\&quot;&#xD;&#xA;Copy /y &quot;$(TargetDir)*deps.json&quot; &quot;C:\AssemblyLoading\&quot;" />
+  </Target>
+
+</Project>
